@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme -->
+    <style name="Theme.Mercadín" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primaryVariant</item>
+        <item name="colorOnPrimary">#1B66B3</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+        <item name="colorOnSecondary">#E91E63</item>
+
+        <!-- Background -->
+        <item name="android:windowBackground">@color/background</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/statusBar</item>
+
+        <item name="android:navigationBarColor">@color/navigationBar</item>
+    </style>
+
+    <!-- Toolbar overlay for dark action bar -->
+    <style name="Theme.Mercadín.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <!-- Toolbar overlay for popup menus -->
+    <style name="Theme.Mercadín.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+</resources>

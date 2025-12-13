@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme (AppCompat) -->
+    <style name="Theme.Mercadín" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">#0095A6</item>
+        <item name="colorPrimaryDark">#006E7C</item>
+        <item name="colorAccent">#15B1A4</item>
+
+        <!-- Background -->
+        <item name="android:windowBackground">#E2FEFF</item>
+
+        <!-- Toolbar height (needed for Toolbar with NoActionBar) -->
+        <item name="actionBarSize">?android:attr/actionBarSize</item>
+    </style>
+</resources>

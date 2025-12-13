@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#539004</color>
+    <color name="primaryVariant">#346100</color>
+    <color name="secondary">#29C35B</color>
+    <color name="secondaryVariant">#3B8A50</color>
+    <color name="statusBar">#346100</color>
+    <color name="navigationBar">#105414</color>
+    <color name="dark">#380029</color>
+    <color name="background">#EBFFD7</color>
+
+    <color name="colorBm">#E7CA00</color>
+    <color name="colorMercadona">#0CA21C</color>
+    <color name="colorDia">#D70505</color>
+    <color name="colorCarrefour">#3F51B5</color>
+
+    <color name="colorSelected">#C36C99</color>
+</resources>
