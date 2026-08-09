@@ -3,6 +3,7 @@ package com.xabif.mercadin.src
 import android.content.Context
 import android.content.Intent
 import androidx.core.net.toUri
+import com.xabif.mercadin.apis.aldi.Aldi
 import com.xabif.mercadin.apis.bm.Bm
 import com.xabif.mercadin.apis.carrefour.Carrefour
 import com.xabif.mercadin.apis.dia.Dia
@@ -20,6 +21,8 @@ object SourceManager {
     private val dia: Dia = Dia();
     private var carrefourEnabled = true;
     private val carrefour: Carrefour = Carrefour();
+    private var aldiEnabled = true;
+    private val aldi: Aldi = Aldi();
 
     fun toggleSource(source: ProductSource, enabled: Boolean) {
         when(source) {
@@ -27,6 +30,7 @@ object SourceManager {
             ProductSource.Mercadona -> mercadonaEnabled = enabled;
             ProductSource.Dia -> diaEnabled = enabled;
             ProductSource.Carrefour -> carrefourEnabled = enabled;
+            ProductSource.Aldi -> aldiEnabled = enabled;
         }
     }
 
@@ -44,6 +48,9 @@ object SourceManager {
             ProductSource.Carrefour -> {
                 carrefour.queryProductById(id)
             }
+            ProductSource.Aldi -> {
+                aldi.queryProductById(id)
+            }
         };
     }
 
@@ -60,6 +67,9 @@ object SourceManager {
         }
         if(carrefourEnabled) {
             products.addAll(carrefour.queryProducts(query));
+        }
+        if(aldiEnabled) {
+            products.addAll(aldi.queryProducts(query));
         }
 
         // Primero un sorting por defecto

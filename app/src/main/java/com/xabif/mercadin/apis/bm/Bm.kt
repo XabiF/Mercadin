@@ -1,6 +1,5 @@
 package com.xabif.mercadin.apis.bm
 
-import android.content.Context
 import com.xabif.mercadin.src.ProductInfo
 import com.xabif.mercadin.src.Source
 import retrofit2.Retrofit

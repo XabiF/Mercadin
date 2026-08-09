@@ -18,6 +18,7 @@
     <string name="super_mercadona">Mercadona</string>
     <string name="super_dia">Dia</string>
     <string name="super_carrefour">Carrefour</string>
+    <string name="super_aldi">ALDI</string>
 
     <string name="exception_dialog_title">Ocurrió un error:</string>
 

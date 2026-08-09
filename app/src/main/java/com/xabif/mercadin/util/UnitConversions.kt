@@ -40,7 +40,7 @@ fun parseUnit(text: String) : Unit {
         return Unit(UnitKind.SingleUnit, 1.0f);
     }
 
-    val tokens = text.split(" ");
+    val tokens = text.replace('-', ' ').split(" ");
     if(tokens.size == 1) {
         // Solamente la unidad
         val unit_str = tokens.first().lowercase();

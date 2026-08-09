@@ -86,6 +86,11 @@ class MainActivity : AppCompatActivity() {
                 SourceManager.toggleSource(ProductSource.Carrefour, item.isChecked);
                 true
             }
+            R.id.item_enable_aldi -> {
+                item.isChecked = !item.isChecked;
+                SourceManager.toggleSource(ProductSource.Aldi, item.isChecked);
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

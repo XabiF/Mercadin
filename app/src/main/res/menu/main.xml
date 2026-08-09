@@ -37,4 +37,12 @@
         android:checkable="true"
         android:checked="true"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_enable_aldi"
+        android:orderInCategory="3"
+        android:title="@string/super_aldi"
+        android:checkable="true"
+        android:checked="true"
+        app:showAsAction="never" />
 </menu>

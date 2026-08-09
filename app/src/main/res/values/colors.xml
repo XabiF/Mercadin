@@ -13,6 +13,7 @@
     <color name="colorMercadona">#0CA21C</color>
     <color name="colorDia">#D70505</color>
     <color name="colorCarrefour">#3F51B5</color>
+    <color name="colorAldi">#00b9e9</color>
 
     <color name="colorSelected">#C36C99</color>
 </resources>

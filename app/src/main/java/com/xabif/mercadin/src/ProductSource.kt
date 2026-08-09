@@ -5,4 +5,5 @@ enum class ProductSource {
     Mercadona,
     Dia,
     Carrefour,
+    Aldi,
 }
