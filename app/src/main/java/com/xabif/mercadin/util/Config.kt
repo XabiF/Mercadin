@@ -1,15 +1,12 @@
 package com.xabif.mercadin.util
 
-import com.google.gson.Gson
 import com.xabif.mercadin.src.ProductSource
-import org.json.JSONObject
-import java.io.File
 
 data class Config(
     val enabledSources: MutableMap<Int, Boolean>
 ) {
     companion object {
-        public lateinit var Instance: Config
+        lateinit var Instance: Config
         lateinit var Path: String
 
         fun initialize() {

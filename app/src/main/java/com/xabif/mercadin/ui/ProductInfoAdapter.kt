@@ -127,13 +127,7 @@ class ProductInfoAdapter(val context: Context, products: kotlin.collections.List
             holder.sale_ref_price.visibility = View.INVISIBLE
         }
 
-        when(info.source) {
-            ProductSource.Bm -> holder.setSource(context, R.string.super_bm, R.color.colorBm)
-            ProductSource.Mercadona -> holder.setSource(context, R.string.super_mercadona, R.color.colorMercadona)
-            ProductSource.Dia -> holder.setSource(context, R.string.super_dia, R.color.colorDia)
-            ProductSource.Carrefour -> holder.setSource(context, R.string.super_carrefour, R.color.colorCarrefour)
-            ProductSource.Aldi -> holder.setSource(context, R.string.super_aldi, R.color.colorAldi)
-        }
+        holder.setSource(context, info.source.getNameResource(), info.source.getColorResource())
 
         holder.icon.load(info.image_url) {
             placeholder(R.drawable.product_img_loading)
