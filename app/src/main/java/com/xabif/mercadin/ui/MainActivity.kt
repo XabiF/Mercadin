@@ -19,36 +19,39 @@ import com.xabif.mercadin.src.ProductSource
 import com.xabif.mercadin.src.SourceManager
 import com.xabif.mercadin.databinding.ActivityMainBinding
 import com.xabif.mercadin.src.List
+import com.xabif.mercadin.util.Config
 import com.xabif.mercadin.util.FileSystem
 
 // https://icon.kitchen/i/H4sIAAAAAAAAAzWQQU%2FDMAyF%2F4u59rDCBlOvCHFFYjfEwWnsNCKtS5IOoWn%2FHTvAJXGene9Z7wJnTBsVGC7gMX%2BcJpoJBsZUqAMOjymumKu1C%2BkFnhi3VKGDOMqiAmOpLOLh2uYlSVb1hhyzf9AxDi%2FofVyCMaqsMPTHDnIMk%2BKsdFKrzL91Im6qslw4fa%2B6CoSMPtJili48%2Fz8UNppXb2Z3%2B%2Ft%2Bt9OBJt02yR3xYBIuISlmf2jM1wkbtHxuMY%2FasAWfmGmsmgFQojNWU6sF4f%2BS0K%2Bz%2BC1ZTm9K9Fmitwik6PlFDt6vP51tOc5KAQAA
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration;
-    private lateinit var binding: ActivityMainBinding;
-    private lateinit var navController: NavController;
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater);
-        setContentView(binding.root);
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarMain.toolbar);
+        setSupportActionBar(binding.appBarMain.toolbar)
 
-        FileSystem.initialize(this);
-        List.restore();
+        FileSystem.initialize(this)
+        Config.initialize()
+        SourceManager.initialize()
+        List.restore()
 
         binding.appBarMain.cartFab.setOnClickListener {
-            val intent = Intent(this, CartActivity::class.java);
-            startActivity(intent);
-        };
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
-        navController = navHostFragment.navController;
+        navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_query, R.id.nav_saved
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         for (source in ProductSource.entries) {
             val item = menu.add(0, source.ordinal, 0, source.getNameResource())
             item.isCheckable = true
-            item.isChecked = true
+            item.isChecked = Config.Instance.getSourceEnabled(source)
         }
 
         return true
@@ -76,6 +79,7 @@ class MainActivity : AppCompatActivity() {
             val source = ProductSource.entries[item.itemId]
             item.isChecked = !item.isChecked
             SourceManager.toggleSource(source, item.isChecked)
+            Config.Instance.setSourceEnabled(source, item.isChecked)
             return true
         }
         else {
@@ -84,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main);
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp();
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

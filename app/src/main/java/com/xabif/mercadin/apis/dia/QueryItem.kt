@@ -11,16 +11,16 @@ data class QueryItem(
 ) {
     fun toItem() : Item {
         // Trick: compute URL based on largest (most-detailed) breadcrumb
-        var cur_link = "";
+        var cur_link = ""
         for(bc in this.breadcrumb) {
             if(bc.link.length > cur_link.length) {
-                cur_link = bc.link;
+                cur_link = bc.link
             }
         }
-        val tokens = cur_link.split("/c/");
-        assert(tokens.size == 2);
-        val url = "https://www.dia.es/${tokens.first()}/p/$sku_id";
+        val tokens = cur_link.split("/c/")
+        assert(tokens.size == 2)
+        val url = "https://www.dia.es/${tokens.first()}/p/$sku_id"
 
-        return Item(primary_info.title, images.first(), prices, sku_id, url);
+        return Item(primary_info.title, images.first(), prices, sku_id, url)
     }
 }

@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface CarrefourSearchApi {
     companion object {
-        const val Url = "https://www.carrefour.es/search-api/query/v1/";
+        const val Url = "https://www.carrefour.es/search-api/query/v1/"
     }
 
     @GET("search/")

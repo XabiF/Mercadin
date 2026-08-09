@@ -11,6 +11,6 @@ data class SearchItem(
     val url: String
 ) {
     fun toItem() : Item {
-        return Item(display_name, image, prices, sku_id, "https://www.dia.es/$url");
+        return Item(display_name, image, prices, sku_id, "https://www.dia.es/$url")
     }
 }

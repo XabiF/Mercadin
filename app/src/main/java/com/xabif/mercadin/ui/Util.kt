@@ -7,19 +7,19 @@ import android.widget.TextView
 class Util {
     companion object {
         fun crossText(view: TextView) {
-            view.paintFlags = view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG;
+            view.paintFlags = view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }
 
         fun uncrossText(view: TextView) {
-            view.paintFlags = view.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv();
+            view.paintFlags = view.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
 
         fun boldText(view: TextView) {
-            view.setTypeface(null, Typeface.BOLD);
+            view.setTypeface(null, Typeface.BOLD)
         }
 
         fun italicText(view: TextView) {
-            view.setTypeface(null, Typeface.ITALIC);
+            view.setTypeface(null, Typeface.ITALIC)
         }
     }
 }

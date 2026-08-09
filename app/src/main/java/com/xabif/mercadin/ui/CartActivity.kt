@@ -18,11 +18,11 @@ class CartActivity : AppCompatActivity() {
 
     private fun reload() {
         lifecycleScope.launch {
-            val products = List.listAvailable().sortedBy { it.source.ordinal };
+            val products = List.listAvailable().sortedBy { it.source.ordinal }
             binding.recyclerView.adapter = ProductInfoAdapter(this@CartActivity, products, true) {
-                reload();
-            };
-            binding.cartInfoText.text = getString(R.string.cart_info, List.totalPrice(), List.count());
+                reload()
+            }
+            binding.cartInfoText.text = getString(R.string.cart_info, List.totalPrice(), List.count())
         }
     }
 
@@ -32,12 +32,12 @@ class CartActivity : AppCompatActivity() {
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar);
-        binding.recyclerView.layoutManager = LinearLayoutManager(this);
+        setSupportActionBar(binding.toolbar)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-        reload();
+        reload()
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

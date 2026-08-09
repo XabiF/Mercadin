@@ -11,45 +11,45 @@ class ProductInfo(val source: ProductSource, val id: String, val name: String, v
 
     fun actualUnitPrice() : Float {
         if(sale_price != null) {
-            return sale_price.unit_price;
+            return sale_price.unit_price
         }
         else {
-            return price.unit_price;
+            return price.unit_price
         }
     }
 
     fun actualProductPrice() : Float {
         if(sale_price != null) {
-            return sale_price.product_price;
+            return sale_price.product_price
         }
         else {
-            return price.product_price;
+            return price.product_price
         }
     }
 
     constructor(json: JSONObject) : this(ProductSource.entries[json.getInt("source")], json.getString("id"), json.getString("name"), Price(json.getJSONObject("price")), if(json.has("sale_price")) Price(json.getJSONObject("sale_price")) else null, json.getString("image_url"), json.getString("url"))
 
     fun toJson() : JSONObject {
-        val product_obj = JSONObject();
-        product_obj.put("source", source.ordinal);
-        product_obj.put("id", id);
-        product_obj.put("name", name);
-        product_obj.put("price", price.toJson());
+        val product_obj = JSONObject()
+        product_obj.put("source", source.ordinal)
+        product_obj.put("id", id)
+        product_obj.put("name", name)
+        product_obj.put("price", price.toJson())
         if(sale_price != null) {
-            product_obj.put("sale_price", sale_price.toJson());
+            product_obj.put("sale_price", sale_price.toJson())
         }
-        product_obj.put("image_url", image_url);
-        return product_obj;
+        product_obj.put("image_url", image_url)
+        return product_obj
     }
 
     override fun equals(other: Any?): Boolean {
-        if (this === other) return true;
-        if (other !is ProductInfo) return false;
+        if (this === other) return true
+        if (other !is ProductInfo) return false
 
-        return (source == other.source) && (id == other.id);
+        return (source == other.source) && (id == other.id)
     }
 
     override fun hashCode(): Int = listOf(id, source).hashCode()
 
-    fun isSale() = sale_price != null;
+    fun isSale() = sale_price != null
 }

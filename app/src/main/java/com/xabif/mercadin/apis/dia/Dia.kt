@@ -9,26 +9,26 @@ class Dia() : SourceInstance {
     private val retrofit : Retrofit = Retrofit.Builder()
         .baseUrl(DiaApi.Url)
         .addConverterFactory(GsonConverterFactory.create())
-        .build();
-    private val base_api: DiaApi = this.retrofit.create(DiaApi::class.java);
+        .build()
+    private val base_api: DiaApi = this.retrofit.create(DiaApi::class.java)
 
     override suspend fun queryProducts(query: String): List<ProductInfo> {
-        val res = this.base_api.searchItems(query, 1);
+        val res = this.base_api.searchItems(query, 1)
         if(res.isSuccessful) {
-            return res.body()!!.search_items.map { search: SearchItem -> search.toItem().toProductInfo() };
+            return res.body()!!.search_items.map { search: SearchItem -> search.toItem().toProductInfo() }
         }
         else {
-            throw RuntimeException("Dia API queryProducts failed with code=${res.code()}");
+            throw RuntimeException("Dia API queryProducts failed with code=${res.code()}")
         }
     }
 
     override suspend fun queryProductById(id: String): ProductInfo {
-        val res = this.base_api.queryItem(id.toInt());
+        val res = this.base_api.queryItem(id.toInt())
         if(res.isSuccessful) {
-            return res.body()!!.product.toItem().toProductInfo();
+            return res.body()!!.product.toItem().toProductInfo()
         }
         else {
-            throw RuntimeException("Dia API queryProductById failed with code=${res.code()}");
+            throw RuntimeException("Dia API queryProductById failed with code=${res.code()}")
         }
     }
 }

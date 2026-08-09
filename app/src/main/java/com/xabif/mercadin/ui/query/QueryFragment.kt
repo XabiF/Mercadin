@@ -25,34 +25,34 @@ import kotlinx.coroutines.launch
 
 class QueryFragment : Fragment() {
 
-    private var _binding: FragmentQueryBinding? = null;
+    private var _binding: FragmentQueryBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
     private fun executeQuery() {
-        val query = binding.queryText.text.toString().trim();
+        val query = binding.queryText.text.toString().trim()
         if(query.isBlank()) {
-            return;
+            return
         }
 
-        binding.recyclerView.adapter = null;
-        val filter = QueryFilter.entries[binding.queryFilter.selectedItemPosition];
-        val sorting = QuerySorting.entries[binding.querySorting.selectedItemPosition];
+        binding.recyclerView.adapter = null
+        val filter = QueryFilter.entries[binding.queryFilter.selectedItemPosition]
+        val sorting = QuerySorting.entries[binding.querySorting.selectedItemPosition]
 
-        binding.infoText.visibility = View.VISIBLE;
-        binding.infoText.setText(R.string.query_info_loading);
+        binding.infoText.visibility = View.VISIBLE
+        binding.infoText.setText(R.string.query_info_loading)
 
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-                val products = SourceManager.queryProducts(query, filter, sorting);
-                binding.recyclerView.adapter = ProductInfoAdapter(requireContext(), products, false) {};
+                val products = SourceManager.queryProducts(query, filter, sorting)
+                binding.recyclerView.adapter = ProductInfoAdapter(requireContext(), products, false) {}
                 if(products.isEmpty()) {
-                    binding.infoText.setText(R.string.query_info_empty);
+                    binding.infoText.setText(R.string.query_info_empty)
                 }
                 else {
-                    binding.infoText.visibility = View.INVISIBLE;
+                    binding.infoText.visibility = View.INVISIBLE
                 }
             }
             catch (e: Exception) {
@@ -60,11 +60,11 @@ class QueryFragment : Fragment() {
                     .setTitle(R.string.exception_dialog_title)
                     .setMessage(e.message)
                     .setNeutralButton("Ok") { dialog, which ->
-                        dialog.dismiss();
+                        dialog.dismiss()
                     }
-                    .show();
+                    .show()
             }
-        };
+        }
     }
 
     override fun onCreateView(
@@ -77,21 +77,21 @@ class QueryFragment : Fragment() {
 
         /////////////////////////////////////////////
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context);
-        binding.infoText.setText(R.string.query_info_initial);
+        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.infoText.setText(R.string.query_info_initial)
 
         val filters_adapter = ArrayAdapter(
             this.requireContext(),
             android.R.layout.simple_spinner_item,
             QueryFilter.entries.map { this.requireContext().getText(it.resId) }
-        );
-        filters_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.queryFilter.adapter = filters_adapter;
-        binding.queryFilter.setSelection(0);
+        )
+        filters_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.queryFilter.adapter = filters_adapter
+        binding.queryFilter.setSelection(0)
 
         binding.queryFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                executeQuery();
+                executeQuery()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -103,14 +103,14 @@ class QueryFragment : Fragment() {
             this.requireContext(),
             android.R.layout.simple_spinner_item,
             QuerySorting.entries.map { this.requireContext().getText(it.resId) }
-        );
-        sortings_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.querySorting.adapter = sortings_adapter;
-        binding.querySorting.setSelection(0);
+        )
+        sortings_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.querySorting.adapter = sortings_adapter
+        binding.querySorting.setSelection(0)
 
         binding.querySorting.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                executeQuery();
+                executeQuery()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -123,11 +123,11 @@ class QueryFragment : Fragment() {
                 actionId == EditorInfo.IME_ACTION_DONE ||
                 (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
             ) {
-                executeQuery();
+                executeQuery()
 
-                val imm = this@QueryFragment.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager;
-                imm.hideSoftInputFromWindow(binding.queryText.windowToken, 0);
-                binding.queryText.clearFocus();
+                val imm = this@QueryFragment.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.queryText.windowToken, 0)
+                binding.queryText.clearFocus()
 
                 true
             }
@@ -136,7 +136,7 @@ class QueryFragment : Fragment() {
             }
         }
 
-        return root;
+        return root
     }
 
     override fun onDestroyView() {

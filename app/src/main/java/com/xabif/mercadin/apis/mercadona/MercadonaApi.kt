@@ -7,10 +7,10 @@ import retrofit2.http.Query
 
 interface MercadonaApi {
     companion object {
-        const val Url = "https://tienda.mercadona.es/api/";
+        const val Url = "https://tienda.mercadona.es/api/"
 
-        const val SampleLang = "es";
-        const val SampleWarehouse = 4572;
+        const val SampleLang = "es"
+        const val SampleWarehouse = 4572
     }
 
     @GET("products/{id}/")

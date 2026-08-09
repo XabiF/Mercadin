@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface BmApi {
     companion object {
-        const val Url = "https://www.online.bmsupermercados.es/api/rest/V1.0/catalog/";
+        const val Url = "https://www.online.bmsupermercados.es/api/rest/V1.0/catalog/"
     }
 
     @GET("product/code/{id}/")

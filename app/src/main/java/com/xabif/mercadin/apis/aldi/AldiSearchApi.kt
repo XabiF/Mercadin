@@ -7,11 +7,11 @@ import retrofit2.http.Query
 
 interface AldiSearchApi {
     companion object {
-        const val Url = "https://l9knu74io7-dsn.algolia.net/1/";
+        const val Url = "https://l9knu74io7-dsn.algolia.net/1/"
 
-        const val Agent = "Algolia for JavaScript (4.26.0); Browser";
-        const val ApplicationId = "L9KNU74IO7";
-        const val ApiKey = "83df5acd172c42ab174afa4583232b5d";
+        const val Agent = "Algolia for JavaScript (4.26.0); Browser"
+        const val ApplicationId = "L9KNU74IO7"
+        const val ApiKey = "83df5acd172c42ab174afa4583232b5d"
     }
 
     @POST("indexes/an_prd_es_es_pen_products2/query/")

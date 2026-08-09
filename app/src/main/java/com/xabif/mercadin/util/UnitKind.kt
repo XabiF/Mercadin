@@ -12,31 +12,31 @@ enum class UnitKind {
 
     fun format() : String {
         if(this == SingleUnit) {
-            return "ud.";
+            return "ud."
         }
         else if(this == Liter) {
-            return "L";
+            return "L"
         }
         else if(this == Milliliter) {
-            return "mL";
+            return "mL"
         }
         else if(this == Centiliter) {
-            return "cL";
+            return "cL"
         }
         else if(this == Gram) {
-            return "g";
+            return "g"
         }
         else if(this == Kilogram) {
-            return "kg";
+            return "kg"
         }
         else if(this == Meter) {
-            return "m";
+            return "m"
         }
         else if(this == Dozen) {
-            return "dc";
+            return "dc"
         }
         else {
-            throw RuntimeException("Invalid unit value");
+            throw RuntimeException("Invalid unit value")
         }
     }
 }

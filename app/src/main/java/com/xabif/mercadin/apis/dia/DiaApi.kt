@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface DiaApi {
     companion object {
-        const val Url = "https://www.dia.es/api/v1/";
+        const val Url = "https://www.dia.es/api/v1/"
     }
 
     @GET("pdp-back/reduced/{id}/")
