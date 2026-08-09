@@ -24,7 +24,7 @@ class Aldi : Source {
             return products;
         }
         else {
-            throw RuntimeException("Carrefour API queryProducts failed with code=${res.code()}: ${res.errorBody()!!.string()}");
+            throw RuntimeException("ALDI API queryProducts failed with code=${res.code()}: ${res.errorBody()!!.string()}");
         }
     }
 
