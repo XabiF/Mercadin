@@ -45,53 +45,41 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent);
         };
 
-        val drawerLayout: DrawerLayout = binding.drawerLayout;
-        val navView: NavigationView = binding.navView;
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment;
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         navController = navHostFragment.navController;
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_query, R.id.nav_saved
             ), drawerLayout
-        );
+        )
 
-        setupActionBarWithNavController(navController, appBarConfiguration);
-        navView.setupWithNavController(navController);
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu);
-        return true;
+        menuInflater.inflate(R.menu.main, menu)
+
+        for (source in ProductSource.entries) {
+            val item = menu.add(0, source.ordinal, 0, source.getNameResource())
+            item.isCheckable = true
+            item.isChecked = true
+        }
+
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.item_enable_bm -> {
-                item.isChecked = !item.isChecked;
-                SourceManager.toggleSource(ProductSource.Bm, item.isChecked);
-                true
-            }
-            R.id.item_enable_mercadona -> {
-                item.isChecked = !item.isChecked;
-                SourceManager.toggleSource(ProductSource.Mercadona, item.isChecked);
-                true
-            }
-            R.id.item_enable_dia -> {
-                item.isChecked = !item.isChecked;
-                SourceManager.toggleSource(ProductSource.Dia, item.isChecked);
-                true
-            }
-            R.id.item_enable_carrefour -> {
-                item.isChecked = !item.isChecked;
-                SourceManager.toggleSource(ProductSource.Carrefour, item.isChecked);
-                true
-            }
-            R.id.item_enable_aldi -> {
-                item.isChecked = !item.isChecked;
-                SourceManager.toggleSource(ProductSource.Aldi, item.isChecked);
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+        if(item.isEnabled) {
+            val source = ProductSource.entries[item.itemId]
+            item.isChecked = !item.isChecked
+            SourceManager.toggleSource(source, item.isChecked)
+            return true
+        }
+        else {
+            return super.onOptionsItemSelected(item)
         }
     }
 

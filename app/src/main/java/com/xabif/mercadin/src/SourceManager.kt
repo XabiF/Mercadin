@@ -3,73 +3,36 @@ package com.xabif.mercadin.src
 import android.content.Context
 import android.content.Intent
 import androidx.core.net.toUri
-import com.xabif.mercadin.apis.aldi.Aldi
-import com.xabif.mercadin.apis.bm.Bm
-import com.xabif.mercadin.apis.carrefour.Carrefour
-import com.xabif.mercadin.apis.dia.Dia
-import com.xabif.mercadin.apis.mercadona.Mercadona
 import com.xabif.mercadin.util.QueryFilter
 import com.xabif.mercadin.util.QuerySorting
 import kotlin.collections.List
 
 object SourceManager {
-    private var mercadonaEnabled = true;
-    private val mercadona: Mercadona = Mercadona();
-    private var bmEnabled = true;
-    private val bm: Bm = Bm();
-    private var diaEnabled = true;
-    private val dia: Dia = Dia();
-    private var carrefourEnabled = true;
-    private val carrefour: Carrefour = Carrefour();
-    private var aldiEnabled = true;
-    private val aldi: Aldi = Aldi();
+    private val sources: MutableMap<ProductSource, SourceInstance?> = mutableMapOf()
 
     fun toggleSource(source: ProductSource, enabled: Boolean) {
-        when(source) {
-            ProductSource.Bm -> bmEnabled = enabled;
-            ProductSource.Mercadona -> mercadonaEnabled = enabled;
-            ProductSource.Dia -> diaEnabled = enabled;
-            ProductSource.Carrefour -> carrefourEnabled = enabled;
-            ProductSource.Aldi -> aldiEnabled = enabled;
+        if(enabled) {
+            sources[source] = source.create()
+        }
+        else {
+            sources[source] = null
         }
     }
 
     suspend fun queryProductById(source: ProductSource, id: String) : ProductInfo {
-        return when(source) {
-            ProductSource.Bm -> {
-                bm.queryProductById(id)
-            }
-            ProductSource.Mercadona -> {
-                mercadona.queryProductById(id)
-            }
-            ProductSource.Dia -> {
-                dia.queryProductById(id)
-            }
-            ProductSource.Carrefour -> {
-                carrefour.queryProductById(id)
-            }
-            ProductSource.Aldi -> {
-                aldi.queryProductById(id)
-            }
-        };
+        return if(sources[source] != null) {
+            sources[source]!!.queryProductById(id)
+        } else {
+            source.create().queryProductById(id)
+        }
     }
 
     suspend fun queryProducts(query: String, filter: QueryFilter, sorting: QuerySorting): List<ProductInfo> {
-        val products: MutableList<ProductInfo> = mutableListOf();
-        if(bmEnabled) {
-            products.addAll(bm.queryProducts(query));
-        }
-        if(mercadonaEnabled) {
-            products.addAll(mercadona.queryProducts(query));
-        }
-        if(diaEnabled) {
-            products.addAll(dia.queryProducts(query));
-        }
-        if(carrefourEnabled) {
-            products.addAll(carrefour.queryProducts(query));
-        }
-        if(aldiEnabled) {
-            products.addAll(aldi.queryProducts(query));
+        val products: MutableList<ProductInfo> = mutableListOf()
+        for ((_, instance) in sources) {
+            if(instance != null) {
+                products.addAll(instance.queryProducts(query))
+            }
         }
 
         // Primero un sorting por defecto

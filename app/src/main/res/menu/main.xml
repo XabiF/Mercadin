@@ -5,44 +5,4 @@
         android:title="@string/menu_options_title"
         android:enabled="false"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/item_enable_bm"
-        android:orderInCategory="1"
-        android:title="@string/super_bm"
-        android:checkable="true"
-        android:checked="true"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/item_enable_mercadona"
-        android:orderInCategory="2"
-        android:title="@string/super_mercadona"
-        android:checkable="true"
-        android:checked="true"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/item_enable_dia"
-        android:orderInCategory="3"
-        android:title="@string/super_dia"
-        android:checkable="true"
-        android:checked="true"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/item_enable_carrefour"
-        android:orderInCategory="3"
-        android:title="@string/super_carrefour"
-        android:checkable="true"
-        android:checked="true"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/item_enable_aldi"
-        android:orderInCategory="3"
-        android:title="@string/super_aldi"
-        android:checkable="true"
-        android:checked="true"
-        app:showAsAction="never" />
 </menu>

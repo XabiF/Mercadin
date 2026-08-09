@@ -1,11 +1,11 @@
 package com.xabif.mercadin.apis.bm
 
 import com.xabif.mercadin.src.ProductInfo
-import com.xabif.mercadin.src.Source
+import com.xabif.mercadin.src.SourceInstance
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Bm() : Source {
+class Bm() : SourceInstance {
     private val retrofit : Retrofit = Retrofit.Builder()
         .baseUrl(BmApi.Url)
         .addConverterFactory(GsonConverterFactory.create())

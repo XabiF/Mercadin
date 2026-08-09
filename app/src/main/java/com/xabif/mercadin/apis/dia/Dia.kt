@@ -1,12 +1,11 @@
 package com.xabif.mercadin.apis.dia
 
-import android.content.Context
 import com.xabif.mercadin.src.ProductInfo
-import com.xabif.mercadin.src.Source
+import com.xabif.mercadin.src.SourceInstance
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Dia() : Source {
+class Dia() : SourceInstance {
     private val retrofit : Retrofit = Retrofit.Builder()
         .baseUrl(DiaApi.Url)
         .addConverterFactory(GsonConverterFactory.create())

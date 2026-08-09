@@ -1,12 +1,11 @@
 package com.xabif.mercadin.apis.mercadona
 
-import android.content.Context
 import com.xabif.mercadin.src.ProductInfo
-import com.xabif.mercadin.src.Source
+import com.xabif.mercadin.src.SourceInstance
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Mercadona() : Source {
+class Mercadona() : SourceInstance {
     private val base_retrofit : Retrofit = Retrofit.Builder()
         .baseUrl(MercadonaApi.Url)
         .addConverterFactory(GsonConverterFactory.create())

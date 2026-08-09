@@ -1,11 +1,11 @@
 package com.xabif.mercadin.apis.carrefour
 
 import com.xabif.mercadin.src.ProductInfo
-import com.xabif.mercadin.src.Source
+import com.xabif.mercadin.src.SourceInstance
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Carrefour() : Source {
+class Carrefour() : SourceInstance {
     private val retrofit : Retrofit = Retrofit.Builder()
         .baseUrl(CarrefourSearchApi.Companion.Url)
         .addConverterFactory(GsonConverterFactory.create())
