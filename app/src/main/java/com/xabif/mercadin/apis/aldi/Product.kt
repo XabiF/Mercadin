@@ -11,6 +11,7 @@ data class Product(
     val currentPrice: ProductPrice?
 ) {
     fun isValid() : Boolean {
+        // Algunos productos no contienen estos campos necesarios, por lo que sea
         return this.currentPrice != null
     }
 

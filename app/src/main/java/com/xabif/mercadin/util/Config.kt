@@ -19,6 +19,7 @@ data class Config(
             }
             else {
                 Instance = config
+                Instance.load()
             }
         }
 
@@ -27,20 +28,26 @@ data class Config(
         }
 
         fun defaultConfig() : Config {
-            val sources: MutableMap<Int, Boolean> = mutableMapOf()
-            for (source in ProductSource.entries) {
-                sources[source.ordinal] = true
+            val config = Config(mutableMapOf())
+            config.load()
+            return config
+        }
+    }
+
+    fun load() {
+        for(source in ProductSource.entries) {
+            if(!this.enabledSources.contains(source.ordinal)) {
+                this.enabledSources[source.ordinal] = true
             }
-            return Config(sources)
         }
     }
 
     fun setSourceEnabled(source: ProductSource, enabled: Boolean) {
-        enabledSources[source.ordinal] = enabled
+        this.enabledSources[source.ordinal] = enabled
         save()
     }
 
     fun getSourceEnabled(source: ProductSource) : Boolean {
-        return enabledSources[source.ordinal]!!
+        return this.enabledSources[source.ordinal]!!
     }
 }

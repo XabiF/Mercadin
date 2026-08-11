@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.isEnabled) {
+        if(item.itemId < ProductSource.entries.size) {
             val source = ProductSource.entries[item.itemId]
             item.isChecked = !item.isChecked
             SourceManager.toggleSource(source, item.isChecked)

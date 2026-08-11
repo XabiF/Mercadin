@@ -41,13 +41,7 @@ fun parseUnit(text: String) : Unit {
     }
 
     val tokens = text.replace('-', ' ').split(" ")
-    if(tokens.size == 1) {
-        // Solamente la unidad
-        val unit_str = tokens.first().lowercase()
-        val unit_kind = UnitMap[unit_str] ?: throw UnknownUnitException("Unable to parse single-term unit '${text}'")
-        return Unit(unit_kind, 1.0f)
-    }
-    else if(tokens.size == 2) {
+    if(tokens.size == 2) {
         // Solamente la unidad
         val value_str = tokens[0].toFloat()
         val unit_str = tokens[1].lowercase()
@@ -55,6 +49,24 @@ fun parseUnit(text: String) : Unit {
         return Unit(unit_kind, value_str)
     }
     else {
+        val lowText = text.lowercase()
+        if(UnitMap.contains(lowText)) {
+            return Unit(UnitMap[lowText]!!, 1.0f)
+        }
+
+        for ((str, kind) in UnitMap) {
+            if(lowText.endsWith(str)) {
+                val textNoSuffix = lowText.removeSuffix(str)
+                try {
+                    val value = textNoSuffix.toFloat()
+                    return Unit(kind, value)
+                }
+                catch (_: NumberFormatException) {
+                    continue
+                }
+            }
+        }
+
         throw UnknownUnitException("Unable to parse unit '${text}'")
     }
 }

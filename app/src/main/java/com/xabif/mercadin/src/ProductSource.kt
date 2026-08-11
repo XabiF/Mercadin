@@ -1,18 +1,20 @@
 package com.xabif.mercadin.src
 
 import com.xabif.mercadin.R
-import com.xabif.mercadin.apis.aldi.Aldi
 import com.xabif.mercadin.apis.bm.Bm
-import com.xabif.mercadin.apis.carrefour.Carrefour
-import com.xabif.mercadin.apis.dia.Dia
 import com.xabif.mercadin.apis.mercadona.Mercadona
+import com.xabif.mercadin.apis.dia.Dia
+import com.xabif.mercadin.apis.carrefour.Carrefour
+import com.xabif.mercadin.apis.aldi.Aldi
+import com.xabif.mercadin.apis.corteingles.CorteIngles
 
 enum class ProductSource {
     Bm,
     Mercadona,
     Dia,
     Carrefour,
-    Aldi;
+    Aldi,
+    CorteIngles;
 
     fun create() : SourceInstance {
         return when(this) {
@@ -21,6 +23,7 @@ enum class ProductSource {
             Dia -> Dia()
             Carrefour -> Carrefour()
             Aldi -> Aldi()
+            CorteIngles -> CorteIngles()
         }
     }
 
@@ -31,6 +34,7 @@ enum class ProductSource {
             Dia -> R.string.super_dia
             Carrefour -> R.string.super_carrefour
             Aldi -> R.string.super_aldi
+            CorteIngles -> R.string.super_corteingles
         }
     }
 
@@ -41,6 +45,7 @@ enum class ProductSource {
             Dia -> R.color.colorDia
             Carrefour -> R.color.colorCarrefour
             Aldi -> R.color.colorAldi
+            CorteIngles -> R.color.colorCorteIngles
         }
     }
 }
