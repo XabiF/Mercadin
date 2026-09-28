@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
@@ -17,8 +16,10 @@ import com.xabif.mercadin.R
 import com.xabif.mercadin.src.ProductInfo
 import coil.load
 import com.xabif.mercadin.src.List
-import com.xabif.mercadin.src.ProductSource
 import com.xabif.mercadin.src.SourceManager
+import com.xabif.mercadin.src.QueryFilter
+import com.xabif.mercadin.src.QuerySorting
+import kotlinx.coroutines.runBlocking
 
 class ProductInfoAdapter(val context: Context, products: kotlin.collections.List<ProductInfo>, val checkable: Boolean, val onListChange: () -> Unit) : RecyclerView.Adapter<ProductInfoAdapter.ItemViewHolder>() {
     private val products: MutableList<ProductInfo> = products.toMutableList()
@@ -90,6 +91,17 @@ class ProductInfoAdapter(val context: Context, products: kotlin.collections.List
             holder.baseCard.setOnClickListener {
                 Log.d("click", "card")
                 holder.toggleChecked(info)
+            }
+        }
+
+        holder.title.setOnClickListener {
+            Log.d("click", "title")
+
+            runBlocking {
+                val test = SourceManager.queryProducts(holder.title.text.toString(), QueryFilter.Default, QuerySorting.Default)
+                for (item in test) {
+                    Log.d("suggested", "${item.name} (${item.source.name})")
+                }
             }
         }
 

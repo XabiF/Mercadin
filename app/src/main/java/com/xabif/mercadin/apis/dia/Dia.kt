@@ -18,7 +18,7 @@ class Dia() : SourceInstance {
             return res.body()!!.search_items.map { search: SearchItem -> search.toItem().toProductInfo() }
         }
         else {
-            throw RuntimeException("Dia API queryProducts failed with code=${res.code()}")
+            throw RuntimeException("Dia API queryProducts failed with code=${res.code()}: ${res.errorBody()!!.string()}")
         }
     }
 
@@ -28,7 +28,7 @@ class Dia() : SourceInstance {
             return res.body()!!.product.toItem().toProductInfo()
         }
         else {
-            throw RuntimeException("Dia API queryProductById failed with code=${res.code()}")
+            throw RuntimeException("Dia API queryProductById for id=$id failed with code=${res.code()}: ${res.errorBody()!!.string()}")
         }
     }
 }

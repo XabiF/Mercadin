@@ -25,17 +25,21 @@ class Mercadona() : SourceInstance {
             return res.body()!!.hits.map { product: Product -> product.toProductInfo() }
         }
         else {
-            throw RuntimeException("Mercadona API queryProducts failed with code=${res.code()}")
+            throw RuntimeException("Mercadona API queryProducts failed with code=${res.code()}: ${res.errorBody()!!.string()}")
         }
     }
 
-    override suspend fun queryProductById(id: String): ProductInfo {
-        val res = base_api.queryProduct(id.toInt(), MercadonaApi.SampleLang, MercadonaApi.SampleWarehouse)
+    override suspend fun queryProductById(id: String): ProductInfo? {
+        val res = base_api.queryProduct(id, MercadonaApi.SampleLang, MercadonaApi.SampleWarehouse)
         if(res.isSuccessful) {
             return res.body()!!.toProductInfo()
         }
+        else if(res.code() == 404) {
+            // Producto no encontrado (fuera de stock también...?)
+            return null
+        }
         else {
-            throw RuntimeException("Mercadona API queryProductById failed with code=${res.code()}")
+            throw RuntimeException("Mercadona API queryProductById for id=$id failed with code=${res.code()}: ${res.errorBody()!!.string()}")
         }
     }
 }

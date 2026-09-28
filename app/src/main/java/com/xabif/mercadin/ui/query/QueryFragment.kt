@@ -17,10 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.xabif.mercadin.R
 import com.xabif.mercadin.src.SourceManager
 import com.xabif.mercadin.databinding.FragmentQueryBinding
-import com.xabif.mercadin.src.List
 import com.xabif.mercadin.ui.ProductInfoAdapter
-import com.xabif.mercadin.util.QueryFilter
-import com.xabif.mercadin.util.QuerySorting
+import com.xabif.mercadin.src.QueryFilter
+import com.xabif.mercadin.src.QuerySorting
 import kotlinx.coroutines.launch
 
 class QueryFragment : Fragment() {

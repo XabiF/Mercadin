@@ -15,7 +15,7 @@ interface MercadonaApi {
 
     @GET("products/{id}/")
     suspend fun queryProduct(
-        @Path("id") id: Int,
+        @Path("id") id: String,
         @Query("lang") lang: String,
         @Query("wh") warehouse: Int
     ): Response<Product>

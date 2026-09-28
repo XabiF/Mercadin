@@ -8,11 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CorteIngles : SourceInstance {
     private val retrofit : Retrofit = Retrofit.Builder()
-        .baseUrl(CorteInglesApi.Companion.Url)
+        .baseUrl(CorteInglesApi.Url)
         .addConverterFactory(GsonConverterFactory.create())
         .client(OkHttpClient.Builder().addInterceptor(CorteInglesInterceptor()).build())
         .build()
-    private val api: CorteInglesApi = this.retrofit.create(CorteInglesApi::class.java)
+    private val api = this.retrofit.create(CorteInglesApi::class.java)
 
     override suspend fun queryProducts(query: String): List<ProductInfo> {
         val res = api.queryProducts(query, "supermercado", "text_box")

@@ -31,7 +31,7 @@ data class Product(
         var price_unit = "unidad"
         var ref_price_value = this.currentPrice!!.priceValue
         if(!this.currentPrice.basePrice.isNullOrEmpty()) {
-            price_unit = this.currentPrice.basePrice.first().basePriceScale
+            price_unit = this.currentPrice.basePrice.first().basePriceScale ?: price_unit
             ref_price_value = this.currentPrice.basePrice.first().basePriceValue
         }
 

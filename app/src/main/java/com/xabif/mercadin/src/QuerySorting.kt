@@ -1,4 +1,4 @@
-package com.xabif.mercadin.util
+package com.xabif.mercadin.src
 
 import com.xabif.mercadin.R
 

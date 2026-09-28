@@ -12,6 +12,7 @@
 
     <string name="menu_query">Búsqueda</string>
     <string name="menu_saved">Listas guardadas</string>
+    <string name="menu_test">Dev test de APIs</string>
     <string name="menu_options_title">Cadenas a buscar</string>
 
     <string name="super_bm">BM</string>
@@ -20,6 +21,8 @@
     <string name="super_carrefour">Carrefour</string>
     <string name="super_aldi">ALDI</string>
     <string name="super_corteingles">Corte Inglés</string>
+    <string name="super_lidl">LIDL</string>
+    <string name="super_action">Action</string>
 
     <string name="exception_dialog_title">Ocurrió un error:</string>
 

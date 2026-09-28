@@ -35,7 +35,7 @@ data class Product(
             return ProductInfo(ProductSource.Mercadona, this.id, this.display_name, price_val, sale_price_val, this.price_instructions.reference_format, ref_price, sale_ref_price, this.thumbnail, url)
         }
         catch (e: Exception) {
-            throw RuntimeException("Exception parsing Mercadona product ID=$id, display_name=$display_name:\n${e.message}")
+            throw RuntimeException("Exception parsing Mercadona product ID=${this.id}, display_name=${this.display_name}:\n${e.message}")
         }
     }
 }

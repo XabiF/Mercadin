@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.net.toUri
 import com.xabif.mercadin.util.Config
-import com.xabif.mercadin.util.QueryFilter
-import com.xabif.mercadin.util.QuerySorting
 import kotlin.collections.List
 
 object SourceManager {
@@ -26,7 +24,7 @@ object SourceManager {
         }
     }
 
-    suspend fun queryProductById(source: ProductSource, id: String) : ProductInfo {
+    suspend fun queryProductById(source: ProductSource, id: String) : ProductInfo? {
         return if(sources[source] != null) {
             sources[source]!!.queryProductById(id)
         } else {

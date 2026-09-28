@@ -9,12 +9,14 @@
     <color name="dark">#380029</color>
     <color name="background">#EBFFD7</color>
 
-    <color name="colorBm">#E7CA00</color>
-    <color name="colorMercadona">#0CA21C</color>
-    <color name="colorDia">#D70505</color>
-    <color name="colorCarrefour">#3F51B5</color>
-    <color name="colorAldi">#00b9e9</color>
-    <color name="colorCorteIngles">#228048</color>
+    <color name="color_bm">#E7CA00</color>
+    <color name="color_mercadona">#0CA21C</color>
+    <color name="color_dia">#D70505</color>
+    <color name="color_carrefour">#3F51B5</color>
+    <color name="color_aldi">#00b9e9</color>
+    <color name="color_corteingles">#228048</color>
+    <color name="color_lidl">#fff000</color>
+    <color name="color_action">#0a165c</color>
 
     <color name="colorSelected">#C36C99</color>
 </resources>

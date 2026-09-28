@@ -112,15 +112,11 @@ object List {
             if(entry.value.count > 0) {
                 // Volver a buscar item!
                 try {
-                    val product = SourceManager.queryProductById(entry.key.source, entry.key.id)
+                    val product = SourceManager.queryProductById(entry.key.source, entry.key.id)!!
                     available.add(product)
-
-                    Log.d("list", "A: ${entry.key}")
-                    Log.d("list", "B: ${product}")
-                    Log.d("list", "eq: ${product.equals(entry.key)}")
                 }
                 catch(e: Exception) {
-                    Log.e("list", "Unable to query product by source=${entry.key.source} ID=${entry.key.id}: $e")
+                    Log.e("list", "Unable to query product by source=${entry.key.source} ID=${entry.key.id}: ${e.stackTraceToString()}")
                 }
             }
         }

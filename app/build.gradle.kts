@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.xabif.mercadin"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.xabif.mercadin"

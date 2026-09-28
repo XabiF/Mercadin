@@ -18,7 +18,7 @@ class Bm() : SourceInstance {
             return res.body()!!.products.map { product: Product -> product.toProductInfo() }
         }
         else {
-            throw RuntimeException("BM API queryProducts failed with code=${res.code()}")
+            throw RuntimeException("BM API queryProducts failed with code=${res.code()}: ${res.errorBody()!!.string()}")
         }
     }
 
@@ -28,7 +28,7 @@ class Bm() : SourceInstance {
             return res.body()!!.toProductInfo()
         }
         else {
-            throw RuntimeException("BM API queryProductById failed with code=${res.code()}")
+            throw RuntimeException("BM API queryProductById for id=$id failed with code=${res.code()}: ${res.errorBody()!!.string()}")
         }
     }
 }

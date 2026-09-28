@@ -1,5 +1,6 @@
 package com.xabif.mercadin.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -25,7 +26,6 @@ import com.xabif.mercadin.util.FileSystem
 // https://icon.kitchen/i/H4sIAAAAAAAAAzWQQU%2FDMAyF%2F4u59rDCBlOvCHFFYjfEwWnsNCKtS5IOoWn%2FHTvAJXGene9Z7wJnTBsVGC7gMX%2BcJpoJBsZUqAMOjymumKu1C%2BkFnhi3VKGDOMqiAmOpLOLh2uYlSVb1hhyzf9AxDi%2FofVyCMaqsMPTHDnIMk%2BKsdFKrzL91Im6qslw4fa%2B6CoSMPtJili48%2Fz8UNppXb2Z3%2B%2Ft%2Bt9OBJt02yR3xYBIuISlmf2jM1wkbtHxuMY%2FasAWfmGmsmgFQojNWU6sF4f%2BS0K%2Bz%2BC1ZTm9K9Fmitwik6PlFDt6vP51tOc5KAQAA
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
